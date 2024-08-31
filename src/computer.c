@@ -35,3 +35,12 @@ int mc_memorySave(char* filename) {
     fclose(file);
     return 0;
 }
+
+int mc_memoryLoad(char* filename) {
+    FILE *file = fopen(filename, "rb");
+    if (file == NULL) {
+        return -1;
+    }
+    fread(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file);
+    fclose(file);
+}
