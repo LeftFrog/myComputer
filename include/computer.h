@@ -2,7 +2,7 @@
 #define UNTITLED_LIBRARY_H
 #include <stdint.h>
 
-#define MEMORY_SIZE 100
+#define MEMORY_SIZE 256
 
 int16_t memory[MEMORY_SIZE];
 
@@ -13,7 +13,7 @@ uint8_t computerRegister;   // 8-bit register
 #define CLOCK_PULSE_IGNORED_FLAG 0b00001000
 #define INVALID_INSTRUCTION_FLAG 0b00010000
 
-
 int memoryInit();
+int memorySet(uint8_t address, int16_t value);
 
 #endif //UNTITLED_LIBRARY_H
