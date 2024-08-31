@@ -44,3 +44,8 @@ int mc_memoryLoad(char* filename) {
     fread(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file);
     fclose(file);
 }
+
+int mc_registerInit() {
+    mc_register = 0;
+    return 0;
+}
