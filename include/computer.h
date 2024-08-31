@@ -2,7 +2,7 @@
 #define MY_COMPUTER_H
 #include <stdint.h>
 
-#define MC_MEMORY_SIZE 256
+#define MC_MEMORY_SIZE 100
 
 int16_t mc_memory[MC_MEMORY_SIZE];
 

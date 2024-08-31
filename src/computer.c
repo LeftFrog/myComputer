@@ -8,7 +8,7 @@ int mc_memoryInit() {
 }
 
 int mc_memorySet(uint8_t address, int16_t value) {
-    if (address > MC_MEMORY_SIZE || address < 0) {
+    if (address > MC_MEMORY_SIZE-1 || address < 0) {
         mc_register |= MC_MEMORY_OUT_OF_BOUNDS_FLAG;
         return -1;
     }
