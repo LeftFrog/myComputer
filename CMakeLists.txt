@@ -3,4 +3,5 @@ project(myComputer LANGUAGES C VERSION 0.0.1)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(myComputer STATIC computer.c)
+add_library(myComputer STATIC src/computer.c
+        include/computer.h)
