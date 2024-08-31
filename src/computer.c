@@ -15,3 +15,12 @@ int mc_memorySet(uint8_t address, int16_t value) {
     mc_memory[address] = value;
     return 0;
 }
+
+int mc_memoryGet(uint8_t address, int16_t* value) {
+    if (address > MC_MEMORY_SIZE-1 || address < 0) {
+        mc_register |= MC_MEMORY_OUT_OF_BOUNDS_FLAG;
+        return -1;
+    }
+    *value = mc_memory[address];
+    return 0;
+}

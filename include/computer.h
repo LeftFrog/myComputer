@@ -15,5 +15,6 @@ uint8_t mc_register;   // 8-bit register
 
 int mc_memoryInit();
 int mc_memorySet(uint8_t address, int16_t value);
+int mc_memoryGet(uint8_t address, int16_t *value);
 
 #endif // MY_COMPUTER_H
