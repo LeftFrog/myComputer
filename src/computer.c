@@ -52,13 +52,25 @@ int mc_registerInit() {
 }
 
 int mc_registerSet(uint8_t registerNumber, uint8_t value) {
-    if (registerNumber > 256 || registerNumber < 0) {
+    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG || registerNumber < 0) {
         return -1;
     }
     if (value) {
         mc_register |= registerNumber;
     } else {
         mc_register &= ~registerNumber;
+    }
+    return 0;
+}
+
+int mc_registerGet(uint8_t registerNumber, uint8_t* value) {
+    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG || registerNumber < 0) {
+        return -1;
+    }
+    if (registerNumber & mc_register) {
+        *value = 1;
+    } else {
+        *value = 0;
     }
     return 0;
 }
