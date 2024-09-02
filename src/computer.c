@@ -103,3 +103,9 @@ int mc_commandEncode(uint8_t command, uint8_t operand, uint16_t* value) {
     *value = (command << 7) | operand;
     return 0;
 }
+
+int mc_commandDecode(uint16_t value, uint8_t* command, uint8_t* operand) {
+    *command = (value >> 7) & 0b1111111;
+    *operand = value & 0b1111111;
+    return 0;
+}

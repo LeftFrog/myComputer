@@ -29,4 +29,5 @@ int mc_registerGet(uint8_t registerNumber, uint8_t *value);
 
 // Command operations
 int mc_commandEncode(uint8_t command, uint8_t operand, uint16_t *value);
+int mc_commandDecode(uint16_t value, uint8_t *command, uint8_t *operand);
 #endif // MY_COMPUTER_H
