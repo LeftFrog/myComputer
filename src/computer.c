@@ -43,9 +43,22 @@ int mc_memoryLoad(char* filename) {
     }
     fread(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file);
     fclose(file);
+    return 0;
 }
 
 int mc_registerInit() {
     mc_register = 0;
+    return 0;
+}
+
+int mc_registerSet(uint8_t registerNumber, uint8_t value) {
+    if (registerNumber > 256 || registerNumber < 0) {
+        return -1;
+    }
+    if (value) {
+        mc_register |= registerNumber;
+    } else {
+        mc_register &= ~registerNumber;
+    }
     return 0;
 }

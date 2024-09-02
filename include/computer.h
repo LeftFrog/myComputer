@@ -24,5 +24,6 @@ int mc_memoryLoad(char *filename);
 
 // Register operations
 int mc_registerInit();
+int mc_registerSet(uint8_t registerNumber, uint8_t value);
 
 #endif // MY_COMPUTER_H
