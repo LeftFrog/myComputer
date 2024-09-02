@@ -50,7 +50,5 @@
 #define MOVR 0b1110010
 #define MOVCA 0b1110011
 #define MOVCR 0b1110100
-#define ADDC 0b1110101
-#define SUBC 0b1110110
 
 #endif //MC_ASSEMBLY_H

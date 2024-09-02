@@ -1,5 +1,22 @@
 #include "../include/computer.h"
+#include "../include/mc_assembly.h"
 #include <stdio.h>
+#include <stdbool.h>
+
+uint8_t instructions[] = {
+    READ, WRITE, LOAD, STORE, ADD, SUB, DIVIDE, MUL, JUMP, JNEG, JZ, HALT, NOT, AND,
+    OR, XOR, JNS, JC, JNC, JP, JNP, CHL, SHR, RCL, RCR, NEG, ADDC, SUBC, LOGLC, LOGRC,
+    RCCL, RCCR, MOVA, MOVR, MOVCA, MOVCR
+};
+
+bool isValidInstruction(uint8_t instruction) {
+    for (int i = 0; i < sizeof(instructions); i++) {
+        if (instruction == instructions[i]) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int mc_memoryInit() {
     for (int i = 0; i < MC_MEMORY_SIZE; i++) {
@@ -72,5 +89,17 @@ int mc_registerGet(uint8_t registerNumber, uint8_t* value) {
     } else {
         *value = 0;
     }
+    return 0;
+}
+
+int mc_commandEncode(uint8_t command, uint8_t operand, uint16_t* value) {
+    if (!isValidInstruction(command)) {
+        mc_register |= MC_INVALID_INSTRUCTION_FLAG;
+        return -1;
+    }
+    if (operand > 100) {
+        return -2;
+    }
+    *value = (command << 7) | operand;
     return 0;
 }
