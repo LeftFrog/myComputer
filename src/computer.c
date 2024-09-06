@@ -26,7 +26,7 @@ int mc_memoryInit() {
 }
 
 int mc_memorySet(uint8_t address, int16_t value) {
-    if (address > MC_MEMORY_SIZE-1 || address < 0) {
+    if (address > MC_MEMORY_SIZE-1) {
         mc_register |= MC_MEMORY_OUT_OF_BOUNDS_FLAG;
         return -1;
     }
@@ -35,7 +35,7 @@ int mc_memorySet(uint8_t address, int16_t value) {
 }
 
 int mc_memoryGet(uint8_t address, int16_t* value) {
-    if (address > MC_MEMORY_SIZE-1 || address < 0) {
+    if (address > MC_MEMORY_SIZE-1) {
         mc_register |= MC_MEMORY_OUT_OF_BOUNDS_FLAG;
         return -1;
     }
@@ -69,7 +69,7 @@ int mc_registerInit() {
 }
 
 int mc_registerSet(uint8_t registerNumber, uint8_t value) {
-    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG || registerNumber < 0) {
+    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG) {
         return -1;
     }
     if (value) {
@@ -81,7 +81,7 @@ int mc_registerSet(uint8_t registerNumber, uint8_t value) {
 }
 
 int mc_registerGet(uint8_t registerNumber, uint8_t* value) {
-    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG || registerNumber < 0) {
+    if (registerNumber > MC_INVALID_INSTRUCTION_FLAG) {
         return -1;
     }
     if (registerNumber & mc_register) {
