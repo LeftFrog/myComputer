@@ -5,16 +5,7 @@
 #ifndef MC_TERMINAL_H
 #define MC_TERMINAL_H
 
-enum mc_colors {
-    MC_BLACK = 0,
-    MC_RED = 1,
-    MC_GREEN = 2,
-    MC_YELLOW = 3,
-    MC_BLUE = 4,
-    MC_MAGENTA = 5,
-    MC_CYAN = 6,
-    MC_WHITE = 7
-};
+#include "mc_colors.h"
 
 int mc_clrscr();
 int mc_goto(int x, int y);
