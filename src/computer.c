@@ -10,7 +10,7 @@ uint8_t instructions[] = {
 };
 
 bool isValidInstruction(uint8_t instruction) {
-    for (int i = 0; i < sizeof(instructions); i++) {
+    for (int i = 0; i < sizeof(instructions)/sizeof(instructions[0]); i++) {
         if (instruction == instructions[i]) {
             return true;
         }
