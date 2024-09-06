@@ -3,17 +3,26 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-uint8_t instructions[] = {
-    READ, WRITE, LOAD, STORE, ADD, SUB, DIVIDE, MUL, JUMP, JNEG, JZ, HALT, NOT, AND,
-    OR, XOR, JNS, JC, JNC, JP, JNP, CHL, SHR, RCL, RCR, NEG, ADDC, SUBC, LOGLC, LOGRC,
-    RCCL, RCCR, MOVA, MOVR, MOVCA, MOVCR
-};
+#define MAX_INSTRUCTION 127
+
+bool instructionLookup[MAX_INSTRUCTION + 1] = { false };
+
+void initInstructionLookup() {
+    uint8_t instructions[] = {
+        READ, WRITE, LOAD, STORE, ADD, SUB, DIVIDE, MUL, JUMP, JNEG, JZ, HALT, NOT, AND,
+        OR, XOR, JNS, JC, JNC, JP, JNP, CHL, SHR, RCL, RCR, NEG, ADDC, SUBC, LOGLC, LOGRC,
+        RCCL, RCCR, MOVA, MOVR, MOVCA, MOVCR
+    };
+    int instructionCount = sizeof(instructions) / sizeof(instructions[0]);
+
+    for (int i = 0; i < instructionCount; i++) {
+        instructionLookup[instructions[i]] = true;
+    }
+}
 
 bool isValidInstruction(uint8_t instruction) {
-    for (int i = 0; i < sizeof(instructions)/sizeof(instructions[0]); i++) {
-        if (instruction == instructions[i]) {
-            return true;
-        }
+    if (instruction <= MAX_INSTRUCTION) {
+        return instructionLookup[instruction];
     }
     return false;
 }
