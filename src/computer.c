@@ -48,7 +48,10 @@ int mc_memorySave(char* filename) {
     if (file == NULL) {
         return -1;
     }
-    fwrite(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file);
+    if (fwrite(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file) != MC_MEMORY_SIZE) {
+        fclose(file);
+        return -2;
+    }
     fclose(file);
     return 0;
 }
@@ -58,7 +61,11 @@ int mc_memoryLoad(char* filename) {
     if (file == NULL) {
         return -1;
     }
-    fread(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file);
+    if(fread(mc_memory, sizeof(int16_t), MC_MEMORY_SIZE, file) != MC_MEMORY_SIZE) {
+        fclose(file);
+        return -2;
+
+    }
     fclose(file);
     return 0;
 }
