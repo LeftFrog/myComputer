@@ -27,6 +27,13 @@ bool isValidInstruction(uint8_t instruction) {
     return false;
 }
 
+int mc_initComputer() {
+    mc_memoryInit();
+    mc_registerInit();
+    initInstructionLookup();
+    return 0;
+}
+
 int mc_memoryInit() {
     for (int i = 0; i < MC_MEMORY_SIZE; i++) {
         mc_memory[i] = 0;
