@@ -8,6 +8,7 @@
 #define CLEAR_SCREEN CSI "2J"
 #define RETURN_CURSOR CSI "H"
 #define SET_FOREGROUND_COLOR CSI "38;5;%dm"
+#define SET_BACKGROUND_COLOR CSI "48;5;%dm"
 
 int mc_clrscr() {
     printf("%s", CLEAR_SCREEN);
@@ -35,5 +36,10 @@ int mc_getScreenSize(int* rows, int* cols) {
 
 int mc_setForegroundColor(enum mc_colors color) {
     printf(CSI "38;5;%dm", color);
+    return 0;
+}
+
+int mc_setBackgroundColor(enum mc_colors color) {
+    printf(SET_BACKGROUND_COLOR, color);
     return 0;
 }
