@@ -5,8 +5,11 @@ set(CMAKE_C_STANDARD 11)
 
 add_library(myComputer STATIC src/computer.c
         include/computer.h
-        include/mc_assembly.h
-        terminal/include/mc_colors.h)
+        include/mc_assembly.h)
 
 add_library(myTerminal STATIC terminal/src/mc_terminal.c
-        terminal/include/mc_terminal.h)
+        terminal/include/mc_terminal.h
+        terminal/include/mc_colors.h)
+
+add_library(myBigChar STATIC bigchar/include/mc_bigchar.h
+        bigchar/src/mc_bigchar.c)
