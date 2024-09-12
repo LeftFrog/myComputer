@@ -44,8 +44,8 @@ int mc_box(int x1, int y1, int x2, int y2) {
 int mc_printBigChar(int arr[2], int x, int y, enum mc_colors fg, enum mc_colors bg) {
     mc_setBackgroundColor(bg);
     mc_setForegroundColor(fg);
-
     for (int row = 0; row < 8; ++row) {
+        mc_goto(x, y + row);
         for (int col = 0; col < 8; ++col) {
             int bitPos = row * 8 + col; // Bit position in the integer array
             int intIndex = bitPos / 32; // Index of the integer in the array
