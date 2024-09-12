@@ -43,3 +43,8 @@ int mc_setBackgroundColor(enum mc_colors color) {
     printf(SET_BACKGROUND_COLOR, color);
     return 0;
 }
+
+int mc_resetColors() {
+    printf("%s", CSI "0m");
+    return 0;
+}

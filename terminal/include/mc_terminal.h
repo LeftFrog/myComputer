@@ -12,5 +12,6 @@ int mc_goto(int x, int y);
 int mc_getScreenSize(int *rows, int *cols);
 int mc_setForegroundColor(enum mc_colors color);
 int mc_setBackgroundColor(enum mc_colors color);
+int mc_resetColors();
 
 #endif //MC_TERMINAL_H
