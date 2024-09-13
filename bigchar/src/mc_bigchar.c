@@ -62,3 +62,19 @@ int mc_printBigChar(int arr[2], int x, int y, enum mc_colors fg, enum mc_colors 
     }
     mc_resetColors();
 }
+
+int mc_setBigCharPos(int *big, int x, int y, int value) {
+    if (x < 0 || x > 7 || y < 0 || y > 7 || value < 0 || value > 1) {
+        return -1;
+    }
+
+    int bigPos = y * 8 + x; // Position in the array
+    int intIndex = bigPos / 32; // Index of the integer in the array
+    int bitIndex = bigPos % 32; // Bit position within the integer
+
+    if (value) {
+        big[intIndex] |= 1 << (31 - bitIndex); // Set the bit
+    } else {
+        big[intIndex] &= ~(1 << (31 - bitIndex));
+    }
+}
