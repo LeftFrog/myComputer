@@ -78,6 +78,7 @@ int mc_setBigCharPos(int *big, int x, int y, int value) {
     } else {
         big[intIndex] &= ~(1 << (31 - bitIndex));
     }
+    return 0;
 }
 
 int mc_getBigCharPos(int* big, int x, int y, int* value) {
@@ -100,8 +101,27 @@ int mc_bigCharWrite(int fd, int* big, int count) {
     }
 
     for (int i = 0; i < count*2; ++i) {
-        fwrite(&big[i], sizeof(int), 1, file);
+        if (fwrite(&big[i], sizeof(int), 1, file) != 1) {
+            fclose(file);
+            return -1;
+        }
     }
     fclose(file);
+    return 0;
+}
+
+int mc_bigCharRead(int fd, int* big, int need_count, int* count) {
+    FILE* file = fdopen(fd, "rb");
+    if (file == NULL) {
+        return -1;
+    }
+
+    for (int i = 0; i < need_count*2; ++i) {
+        if (fread(&big[i], sizeof(int), 1, file) != 1) {
+            fclose(file);
+            return -1;
+        }
+        // *count = i/2;
+    }
     return 0;
 }
