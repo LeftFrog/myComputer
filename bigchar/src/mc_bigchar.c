@@ -78,3 +78,16 @@ int mc_setBigCharPos(int *big, int x, int y, int value) {
         big[intIndex] &= ~(1 << (31 - bitIndex));
     }
 }
+
+int mc_getBigCharPos(int* big, int x, int y, int* value) {
+    if (x < 0 || x > 7 || y < 0 || y > 7) {
+        return -1;
+    }
+
+    int bigPos = y * 8 + x;
+    int intIndex = bigPos / 32;
+    int bitIndex = bigPos % 32;
+
+    *value = (big[intIndex] >> (31 - bitIndex) & 1);
+    return 0;
+}
