@@ -61,6 +61,7 @@ int mc_printBigChar(int arr[2], int x, int y, enum mc_colors fg, enum mc_colors 
         printf("\n"); // Move to the next row
     }
     mc_resetColors();
+    return 0;
 }
 
 int mc_setBigCharPos(int *big, int x, int y, int value) {
@@ -89,5 +90,18 @@ int mc_getBigCharPos(int* big, int x, int y, int* value) {
     int bitIndex = bigPos % 32;
 
     *value = (big[intIndex] >> (31 - bitIndex) & 1);
+    return 0;
+}
+
+int mc_bigCharWrite(int fd, int* big, int count) {
+    FILE* file = fdopen(fd, "wb");
+    if (file == NULL) {
+        return -1;
+    }
+
+    for (int i = 0; i < count*2; ++i) {
+        fwrite(&big[i], sizeof(int), 1, file);
+    }
+    fclose(file);
     return 0;
 }
