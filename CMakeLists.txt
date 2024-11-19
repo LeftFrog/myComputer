@@ -12,4 +12,6 @@ add_library(myTerminal STATIC terminal/src/mc_terminal.c
         terminal/include/mc_colors.h)
 
 add_library(myBigChar STATIC bigchar/include/mc_bigchar.h
-        bigchar/src/mc_bigchar.c)
+        bigchar/src/mc_bigchar.c
+        readkey/include/mc_readkey.h
+        readkey/src/mc_readkey.c)
