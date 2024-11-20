@@ -29,7 +29,7 @@ enum mc_keys {
     KEY_UNKNOWN
 };
 
-int mc_readkey(enum keys *);
+int mc_readkey(enum mc_keys *);
 int mc_mytermsave();
 int mc_mytermrestore();
 int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint);
