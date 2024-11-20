@@ -4,6 +4,9 @@
 
 #include "../include/mc_readkey.h"
 
+#include <string.h>
+#include <unistd.h>
+
 typedef struct {
     const char* seq;
     enum mc_keys key;
@@ -31,3 +34,33 @@ static KeyMap keyMap[] = {
     {"\t", KEY_TAB},
     {"\033", KEY_ESC},
 };
+
+int mc_readkey(enum mc_keys* key) {
+    char buf[8] = {0};
+    ssize_t bytesRead = read(STDIN_FILENO, buf, sizeof(buf));
+
+    if (bytesRead <= 0) {
+        return -1;
+    }
+
+    buf[bytesRead] ='\0';
+
+    for (size_t i = 0; i < sizeof(keyMap) / sizeof(keyMap[0]); ++i) {
+        if (strcmp(buf, keyMap[i].seq) == 0) {
+            *key = keyMap[i].key;
+            return 0;
+        }
+    }
+
+    if (buf[0] >= 'A' && buf[0] <= 'Z') {
+        *key = buf[0];
+        return 0;
+    }
+    if (buf[0] >= '0' && buf[0] <= '9') {
+        *key = buf[0];
+        return 0;
+    }
+
+    *key = KEY_UNKNOWN;
+    return 0;
+}

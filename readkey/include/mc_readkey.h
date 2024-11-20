@@ -24,7 +24,9 @@ enum mc_keys {
     MC_KEY_F11, MC_KEY_F12,
 
     // Control keys
-    KEY_ENTER, KEY_BACKSPACE, KEY_TAB, KEY_ESC
+    KEY_ENTER, KEY_BACKSPACE, KEY_TAB, KEY_ESC,
+
+    KEY_UNKNOWN
 };
 
 int mc_readkey(enum keys *);
