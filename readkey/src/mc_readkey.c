@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <termios.h>
 
+struct termios oldt, newt;
+
 typedef struct {
     const char* seq;
     enum mc_keys key;
@@ -66,7 +68,7 @@ int mc_readkey(enum mc_keys* key) {
 }
 
 int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint) {
-    struct termios newt;
+    newt = oldt;
 
     if (tcgetattr(0, &newt) != 0) {
         return -1;
