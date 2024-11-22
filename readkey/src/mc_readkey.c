@@ -75,6 +75,12 @@ int mc_mytermsave() {
     return 0;
 }
 
+int mc_mytermrestore() {
+    if (tcsetattr(STDIN_FILENO, TCSANOW, &oldt) != 0) {
+        return -1;
+    }
+}
+
 int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint) {
     newt = oldt;
 
