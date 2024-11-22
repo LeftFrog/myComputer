@@ -9,7 +9,9 @@ add_library(myComputer STATIC src/computer.c
 
 add_library(myTerminal STATIC terminal/src/mc_terminal.c
         terminal/include/mc_terminal.h
-        terminal/include/mc_colors.h)
+        terminal/include/mc_colors.h
+        terminal/include/mc_window.h
+        terminal/src/mc_window.c)
 
 add_library(myBigChar STATIC bigchar/include/mc_bigchar.h
         bigchar/src/mc_bigchar.c)
