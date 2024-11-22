@@ -3,9 +3,9 @@
 //
 
 #include "../include/mc_readkey.h"
-
 #include <string.h>
 #include <unistd.h>
+#include <termios.h>
 
 typedef struct {
     const char* seq;
@@ -64,3 +64,39 @@ int mc_readkey(enum mc_keys* key) {
     *key = KEY_UNKNOWN;
     return 0;
 }
+
+int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint) {
+    struct termios newt;
+
+    if (tcgetattr(0, &newt) != 0) {
+        return -1;
+    }
+
+    if (regime) {
+        newt.c_lflag |= ICANON;
+    } else {
+        newt.c_lflag &= ~ICANON;
+    }
+
+    if (echo) {
+        newt.c_lflag |= ECHO;
+    } else {
+        newt.c_lflag &= ~ECHO;
+    }
+
+    if (sigint) {
+        newt.c_lflag |= ISIG;
+    } else {
+        newt.c_lflag &= ~ISIG;
+    }
+
+    newt.c_cc[VTIME] = vtime;
+    newt.c_cc[VMIN] = vmin;
+
+    if (tcsetattr(STDIN_FILENO, TCSANOW, &newt) != 0) {
+        return -1;
+    }
+
+    return 0;
+}
+
