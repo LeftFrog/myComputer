@@ -67,6 +67,14 @@ int mc_readkey(enum mc_keys* key) {
     return 0;
 }
 
+int mc_mytermsave() {
+    if (tcgetattr(STDIN_FILENO, &oldt) != 0) {
+        return -1;
+    }
+
+    return 0;
+}
+
 int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint) {
     newt = oldt;
 
