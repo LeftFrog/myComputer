@@ -21,3 +21,4 @@ add_library(myReadkey STATIC readkey/include/mc_readkey.h
 
 add_executable(myComputerProgram main.c)
 target_link_libraries(myComputerProgram myReadkey)
+target_link_libraries(myComputerProgram myTerminal)
