@@ -18,9 +18,7 @@ int mc_clrscr() {
 }
 
 int mc_goto(int x, int y) {
-    char buffer[30];
-    int length = snprintf(buffer, sizeof(buffer), CSI "%d;%dH", y, x);
-    write(STDOUT_FILENO, buffer, length);
+    printf(CSI "%d;%dH", y, x);
     return 0;
 }
 
