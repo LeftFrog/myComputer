@@ -10,8 +10,10 @@ struct mc_window {
     int y;
     int width;
     int height;
+    char title[64];
 };
 
 int mc_drawWindow(struct mc_window* window);
+int mc_drawTitle(struct mc_window* window);
 
 #endif //MC_WINDOW_H

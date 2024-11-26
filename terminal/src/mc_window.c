@@ -3,10 +3,9 @@
 //
 
 #include "../include/mc_window.h"
-
 #include <stdio.h>
-
 #include "../include/mc_terminal.h"
+#include <string.h>
 
 int mc_drawWindow(struct mc_window* window) {
     int screenRows, screenCols;
@@ -39,5 +38,15 @@ int mc_drawWindow(struct mc_window* window) {
     }
     printf("┘");
 
+    return 0;
+}
+
+int mc_drawTitle(struct mc_window* window) {
+    if (strlen(window->title) == 0 || strlen(window->title) > window->width - 2) {
+        return -1;
+    }
+    int startx = window->x + window->width / 2 - strlen(window->title) / 2;
+    mc_goto(startx, window->y);
+    printf("%s", window->title);
     return 0;
 }
