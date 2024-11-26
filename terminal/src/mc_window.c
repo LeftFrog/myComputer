@@ -9,9 +9,6 @@
 #include "../include/mc_terminal.h"
 
 int mc_drawWindow(struct mc_window* window) {
-
-    mc_clrscr();
-
     int screenRows, screenCols;
     mc_getScreenSize(&screenRows, &screenCols);
 
@@ -25,9 +22,6 @@ int mc_drawWindow(struct mc_window* window) {
         printf("─");
     }
     printf("┐");
-
-    mc_goto(window->x,window->y + 1);
-    printf("f");
 
     // Draw sides
     for (int i = 1; i < window->height - 1; i++) {
