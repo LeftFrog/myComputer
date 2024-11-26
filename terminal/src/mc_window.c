@@ -14,6 +14,8 @@ int mc_drawWindow(struct mc_window* window) {
     if (window->x + window->width > screenCols || window->y + window->height > screenRows) {
         return -1;
     }
+
+
     // Draw top border
     mc_goto(window->x, window->y);
     printf("┌");
@@ -37,6 +39,8 @@ int mc_drawWindow(struct mc_window* window) {
         printf("─");
     }
     printf("┘");
+
+    mc_drawTitle(window);
 
     return 0;
 }
