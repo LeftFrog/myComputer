@@ -18,7 +18,7 @@ int mc_clrscr() {
 }
 
 int mc_goto(int x, int y) {
-    printf(CSI "%d;%dH", y, x);
+    printf(CSI "%d;%dH", ++y, ++x);
     return 0;
 }
 
