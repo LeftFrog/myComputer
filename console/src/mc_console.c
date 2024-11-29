@@ -16,7 +16,7 @@ struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
 int mc_drawMemory() {
     mc_drawWindow(&mc_memoryWidnow);
     for (int i = 0; i < 10; i++) {
-        for(int j = 0; j < 10; j++) {
+        for (int j = 0; j < 10; j++) {
             mc_goto(mc_memoryWidnow.x + 1 + j*6 , mc_memoryWidnow.y + 1 + i);
             int16_t value = mc_memory[i*10 + j];
             if (value < 0) {
@@ -29,9 +29,20 @@ int mc_drawMemory() {
     return 0;
 }
 
+int mc_drawAccumulator() {
+    mc_drawWindow(&mc_accumulatorWindow);
+    int startx = mc_accumulatorWindow.x + mc_accumulatorWindow.width / 2 - 3;
+    mc_goto(startx , mc_accumulatorWindow.y + 1);
+    if (mc_accumulator < 0) {
+        printf("-%04X", -mc_accumulator);
+    } else {
+        printf("+%04X", mc_accumulator);
+    }
+}
+
 int mc_drawConsole() {
     mc_drawMemory();
-    mc_drawWindow(&mc_accumulatorWindow);
+    mc_drawAccumulator();
     mc_drawWindow(&mc_instructionCounterWindow);
     mc_drawWindow(&mc_operationWindow);
     mc_drawWindow(&mc_flagsWindow);
