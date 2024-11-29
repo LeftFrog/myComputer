@@ -13,5 +13,6 @@ extern struct mc_window mc_instructionCounterWindow;
 extern struct mc_window mc_operationWindow;
 extern struct mc_window mc_flagsWindow;
 
+int mc_drawMemory();
 int mc_drawConsole();
 #endif // MY_CONSOLE_H
