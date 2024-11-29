@@ -24,5 +24,5 @@ add_library(myConsole STATIC console/include/mc_console.h
         console/src/mc_console.c)
 
 add_executable(myComputerProgram main.c)
-target_link_libraries(myComputerProgram myReadkey)
+target_link_libraries(myComputerProgram myConsole)
 target_link_libraries(myComputerProgram myTerminal)

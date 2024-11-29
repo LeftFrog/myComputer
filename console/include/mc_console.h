@@ -7,10 +7,11 @@
 
 #include "../../terminal/include/mc_window.h"
 
-struct mc_window mc_memoryWidnow = { 0, 0, 61, 12, "Memory" };
-struct mc_window mc_accumulatorWindow = { 62, 0, 20, 3, "Accumulator" };
-struct mc_window mc_instructionCounterWindow = { 62, 3, 20, 3, "InstructionCounter" };
-struct mc_window mc_operationWindow = { 62, 6, 20,  3, "Operation" };
-struct mc_window mc_flags = { 62, 9, 20, 3, "Flags" };
+extern struct mc_window mc_memoryWidnow;
+extern struct mc_window mc_accumulatorWindow;
+extern struct mc_window mc_instructionCounterWindow;
+extern struct mc_window mc_operationWindow;
+extern struct mc_window mc_flagsWindow;
 
+int mc_drawConsole();
 #endif // MY_CONSOLE_H
