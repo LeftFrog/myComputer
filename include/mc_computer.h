@@ -6,6 +6,7 @@
 
 int16_t mc_memory[MC_MEMORY_SIZE];
 
+int16_t mc_accumulator; // 16-bit register
 uint8_t mc_register;   // 8-bit register
 
 // Register flags
