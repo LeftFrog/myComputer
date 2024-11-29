@@ -3,8 +3,8 @@ project(myComputer LANGUAGES C VERSION 0.0.6)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(myComputer STATIC src/computer.c
-        include/computer.h
+add_library(myComputer STATIC src/mc_computer.c
+        include/mc_computer.h
         include/mc_assembly.h)
 
 add_library(myTerminal STATIC terminal/src/mc_terminal.c

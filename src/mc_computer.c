@@ -1,4 +1,4 @@
-#include "../include/computer.h"
+#include "../include/mc_computer.h"
 #include "../include/mc_assembly.h"
 #include <stdio.h>
 #include <stdbool.h>
