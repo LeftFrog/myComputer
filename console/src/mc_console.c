@@ -40,6 +40,29 @@ int mc_drawAccumulator() {
     } else {
         printf("+%04X", mc_accumulator);
     }
+    return 0;
+}
+
+int mc_drawKeys() {
+    mc_drawWindow(&mc_keysWindow);
+
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y);
+    printf(" Keys: ");
+
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 1);
+    printf("l  - load");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 2);
+    printf("s  - save");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 3);
+    printf("r  - run");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 4);
+    printf("t  - step");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 5);
+    printf("i  - reset");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 6);
+    printf("F5 - accumulator");
+    mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 7);
+    printf("F6 - instruction counter");
 }
 
 int mc_drawConsole() {
@@ -49,6 +72,6 @@ int mc_drawConsole() {
     mc_drawWindow(&mc_operationWindow);
     mc_drawWindow(&mc_flagsWindow);
     mc_drawWindow(&mc_currentMemoryItemWindow);
-    mc_drawWindow(&mc_keysWindow);
+    mc_drawKeys();
     return 0;
 }

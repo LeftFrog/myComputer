@@ -17,5 +17,6 @@ extern struct mc_window mc_keysWindow;
 
 int mc_drawMemory();
 int mc_drawAccumulator();
+int mc_drawKeys();
 int mc_drawConsole();
 #endif // MY_CONSOLE_H
