@@ -12,6 +12,7 @@ extern struct mc_window mc_accumulatorWindow;
 extern struct mc_window mc_instructionCounterWindow;
 extern struct mc_window mc_operationWindow;
 extern struct mc_window mc_flagsWindow;
+extern struct mc_window mc_currentMemoryItemWindow;
 
 int mc_drawMemory();
 int mc_drawAccumulator();

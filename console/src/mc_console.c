@@ -12,6 +12,7 @@ struct mc_window mc_accumulatorWindow = { 62, 0, 20, 3, "Accumulator" };
 struct mc_window mc_instructionCounterWindow = { 62, 3, 20, 3, "InstructionCounter" };
 struct mc_window mc_operationWindow = { 62, 6, 20,  3, "Operation" };
 struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
+struct mc_window mc_currentMemoryItemWindow = { 0, 12, 46, 10, ""};
 
 int mc_drawMemory() {
     mc_drawWindow(&mc_memoryWidnow);
@@ -46,5 +47,6 @@ int mc_drawConsole() {
     mc_drawWindow(&mc_instructionCounterWindow);
     mc_drawWindow(&mc_operationWindow);
     mc_drawWindow(&mc_flagsWindow);
+    mc_drawWindow(&mc_currentMemoryItemWindow);
     return 0;
 }
