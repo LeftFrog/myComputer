@@ -16,14 +16,21 @@ struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
 struct mc_window mc_currentMemoryItemWindow = { 0, 12, 46, 10, ""};
 struct mc_window mc_keysWindow = { 46, 12, 35, 10, "" };
 
-struct mc_bigChar chars;
+struct mc_bigChar chars[18];
+
+typedef struct {
+    const char ch;
+    const struct mc_bigChar;
+} CharMap;
+
+CharMap charMap[18];
 
 int loadChars() {
     FILE* file = fopen("bigChar.bin", "rb");
     if (file == NULL) {
         return -1;
     }
-    mc_bigCharsRead(fileno(file), &chars, 1, NULL);
+    mc_bigCharsRead(fileno(file), chars, 1, NULL);
     fclose(file);
     return 0;
 }
@@ -31,6 +38,24 @@ int loadChars() {
 int initConsole() {
     mc_clrscr();
     loadChars();
+    charMap[0] = (CharMap){ '+', chars[0].value };
+    charMap[1] = (CharMap){ '-', chars[1].value };
+    charMap[2] = (CharMap){ '0', chars[2].value };
+    charMap[3] = (CharMap){ '1', chars[3].value };
+    charMap[4] = (CharMap){ '2', chars[4].value };
+    charMap[5] = (CharMap){ '3', chars[5].value };
+    charMap[6] = (CharMap){ '4', chars[6].value };
+    charMap[7] = (CharMap){ '5', chars[7].value };
+    charMap[8] = (CharMap){ '6', chars[8].value };
+    charMap[9] = (CharMap){ '7', chars[9].value };
+    charMap[10] = (CharMap){ '8', chars[10].value };
+    charMap[11] = (CharMap){ '9', chars[11].value };
+    charMap[12] = (CharMap){ 'A', chars[12].value };
+    charMap[13] = (CharMap){ 'B', chars[13].value };
+    charMap[14] = (CharMap){ 'C', chars[14].value };
+    charMap[15] = (CharMap){ 'D', chars[15].value };
+    charMap[16] = (CharMap){ 'E', chars[16].value };
+    charMap[17] = (CharMap){ 'F', chars[17].value };
     mc_drawConsole();
     return 0;
 }
