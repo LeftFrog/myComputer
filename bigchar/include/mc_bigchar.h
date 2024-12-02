@@ -15,4 +15,8 @@ int mc_getBigCharPos(int *big, int x, int y, int *value);
 int mc_bigCharWrite(int fd, int *big, int count);
 int mc_bigCharRead(int fd, int *big, int need_count, int *count);
 
+struct bigChar {
+    int value[2];
+};
+
 #endif //MC_BIGCHAR_H

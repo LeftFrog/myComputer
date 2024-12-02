@@ -121,7 +121,7 @@ int mc_bigCharRead(int fd, int* big, int need_count, int* count) {
             fclose(file);
             return -1;
         }
-        // *count = i/2;
+        *count = i/2;
     }
     return 0;
 }
