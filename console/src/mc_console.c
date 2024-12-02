@@ -5,6 +5,7 @@
 #include "../include/mc_console.h"
 #include "../../terminal/include/mc_terminal.h"
 #include "../../include/mc_computer.h"
+#include "../../bigchar/include/mc_bigchar.h"
 #include <stdio.h>
 
 struct mc_window mc_memoryWidnow = { 0, 0, 61, 12, "Memory" };
@@ -14,6 +15,25 @@ struct mc_window mc_operationWindow = { 62, 6, 20,  3, "Operation" };
 struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
 struct mc_window mc_currentMemoryItemWindow = { 0, 12, 46, 10, ""};
 struct mc_window mc_keysWindow = { 46, 12, 35, 10, "" };
+
+struct mc_bigChar chars;
+
+int loadChars() {
+    FILE* file = fopen("bigChar.bin", "rb");
+    if (file == NULL) {
+        return -1;
+    }
+    mc_bigCharsRead(fileno(file), &chars, 1, NULL);
+    fclose(file);
+    return 0;
+}
+
+int initConsole() {
+    mc_clrscr();
+    loadChars();
+    mc_drawConsole();
+    return 0;
+}
 
 int mc_drawMemory() {
     mc_drawWindow(&mc_memoryWidnow);

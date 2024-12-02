@@ -15,6 +15,7 @@ extern struct mc_window mc_flagsWindow;
 extern struct mc_window mc_currentMemoryItemWindow;
 extern struct mc_window mc_keysWindow;
 
+int initConsole();
 int mc_drawMemory();
 int mc_drawAccumulator();
 int mc_drawKeys();
