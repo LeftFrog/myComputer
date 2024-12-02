@@ -110,6 +110,22 @@ int mc_bigCharWrite(int fd, int* big, int count) {
     return 0;
 }
 
+int mc_bigCharsWrite(int fd, struct mc_bigChar* chars, int count) {
+    FILE* file = fdopen(fd, "wb");
+    if (file == NULL) {
+        return -1;
+    }
+
+    for (int i = 0; i < count; ++i) {
+        if (fwrite(chars[i].value, sizeof(int), 2, file) != 2) {
+            fclose(file);
+            return -1;
+        }
+    }
+    fclose(file);
+    return 0;
+}
+
 int mc_bigCharRead(int fd, int* big, int need_count, int* count) {
     FILE* file = fdopen(fd, "rb");
     if (file == NULL) {
