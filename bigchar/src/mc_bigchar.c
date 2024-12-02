@@ -141,3 +141,18 @@ int mc_bigCharRead(int fd, int* big, int need_count, int* count) {
     }
     return 0;
 }
+
+int mc_bigCharsRead(int fd, struct mc_bigChar* chars, int need_count, int* count) {
+    FILE* file = fdopen(fd, "rb");
+    if (file == NULL) {
+        return -1;
+    }
+
+    for (int i = 0; i < need_count; ++i) {
+        if (fread(chars[i].value, sizeof(int), 2, file) != 2) {
+            fclose(file);
+            return -1;
+        }
+        *count = i;
+    }
+}
