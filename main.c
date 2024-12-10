@@ -4,13 +4,14 @@
 
 #include <stdio.h>
 
+#include "bigchar/include/mc_bigchar.h"
 #include "console/include/mc_console.h"
 #include "terminal/include/mc_terminal.h"
 
 int main(void) {
     mc_clrscr();
     mc_initConsole();
-    printf(mc_getFormattedMemoryValue(0x43FF));
+    mc_drawConsole();
     int rows, cols;
     mc_getScreenSize(&rows, &cols);
     mc_goto(cols, 25);

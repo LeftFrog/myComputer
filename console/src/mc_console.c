@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MC_CHARMAP_SIZE 18
+
 struct mc_window mc_memoryWidnow = { 0, 0, 61, 12, "Memory" };
 struct mc_window mc_accumulatorWindow = { 62, 0, 20, 3, "Accumulator" };
 struct mc_window mc_instructionCounterWindow = { 62, 3, 20, 3, "InstructionCounter" };
@@ -24,14 +26,14 @@ typedef struct {
     struct mc_bigChar bigChar;
 } CharMap;
 
-CharMap charMap[18];
+CharMap charMap[MC_CHARMAP_SIZE];
 
 int loadChars() {
     FILE* file = fopen("bigChar.bin", "rb");
     if (file == NULL) {
         return -1;
     }
-    mc_bigCharsRead(fileno(file), chars, 1, NULL);
+    mc_bigCharsRead(fileno(file), chars, MC_CHARMAP_SIZE, NULL);
     fclose(file);
     return 0;
 }
@@ -122,6 +124,20 @@ int mc_drawKeys() {
 
 int mc_drawCurrectMemoryCell() {
     mc_drawWindow(&mc_currentMemoryCellWindow);
+    char* string = mc_getFormattedMemoryValue(0x14FF);
+    int startx = mc_currentMemoryCellWindow.x + 1;
+    int starty = mc_currentMemoryCellWindow.y + 1;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < MC_CHARMAP_SIZE; j++) {
+            if (string[i] == charMap[j].ch) {
+                mc_printBigChar(charMap[j].bigChar.value, startx + i*9, starty, MC_WHITE, MC_BLACK);
+                break;
+            }
+
+        }
+    }
+    free(string);
+    return 0;
 }
 
 int mc_drawConsole() {
