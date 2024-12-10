@@ -153,6 +153,6 @@ int mc_bigCharsRead(int fd, struct mc_bigChar* chars, int need_count, int* count
             fclose(file);
             return -1;
         }
-        *count = i;
+        // *count = i;
     }
 }

@@ -9,7 +9,8 @@
 
 int main(void) {
     mc_clrscr();
-    mc_drawConsole();
+    mc_initConsole();
+    printf(mc_getFormattedMemoryValue(0x43FF));
     int rows, cols;
     mc_getScreenSize(&rows, &cols);
     mc_goto(cols, 25);

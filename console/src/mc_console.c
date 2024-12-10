@@ -7,6 +7,7 @@
 #include "../../include/mc_computer.h"
 #include "../../bigchar/include/mc_bigchar.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 struct mc_window mc_memoryWidnow = { 0, 0, 61, 12, "Memory" };
 struct mc_window mc_accumulatorWindow = { 62, 0, 20, 3, "Accumulator" };
@@ -35,6 +36,16 @@ int loadChars() {
     return 0;
 }
 
+char* mc_getFormattedMemoryValue(int16_t value) {
+    char* string = malloc(6);
+    if (value < 0) {
+        sprintf(string, "-%04X", value);
+    } else {
+        sprintf(string, "+%04X", value);
+    }
+    return string;
+}
+
 int mc_initConsole() {
     mc_clrscr();
     loadChars();
@@ -56,7 +67,6 @@ int mc_initConsole() {
     charMap[15] = (CharMap){ 'D', chars[15] };
     charMap[16] = (CharMap){ 'E', chars[16] };
     charMap[17] = (CharMap){ 'F', chars[17] };
-    mc_drawConsole();
     return 0;
 }
 
