@@ -16,7 +16,7 @@ extern struct mc_window mc_flagsWindow;
 extern struct mc_window mc_currentMemoryCellWindow;
 extern struct mc_window mc_keysWindow;
 
-extern uint8_t currentCell;
+extern uint8_t mc_currentCell;
 
 char* mc_getFormattedMemoryValue(int16_t value);
 

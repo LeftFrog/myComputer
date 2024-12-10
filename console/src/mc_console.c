@@ -19,6 +19,8 @@ struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
 struct mc_window mc_currentMemoryCellWindow = { 0, 12, 46, 10, ""};
 struct mc_window mc_keysWindow = { 46, 12, 35, 10, "" };
 
+uint8_t mc_currentCell = 0;
+
 struct mc_bigChar chars[18];
 
 typedef struct {
@@ -124,7 +126,9 @@ int mc_drawKeys() {
 
 int mc_drawCurrectMemoryCell() {
     mc_drawWindow(&mc_currentMemoryCellWindow);
-    char* string = mc_getFormattedMemoryValue(0x14FF);
+    int16_t value = mc_memory[mc_currentCell];
+    mc_memoryGet(mc_currentCell, &value);
+    char* string = mc_getFormattedMemoryValue(value);
     int startx = mc_currentMemoryCellWindow.x + 1;
     int starty = mc_currentMemoryCellWindow.y + 1;
     for (int i = 0; i < 5; i++) {
