@@ -24,6 +24,6 @@ int mc_initConsole();
 int mc_drawMemory();
 int mc_drawAccumulator();
 int mc_drawKeys();
-int mc_drawCurrectMemoryCell();
+int mc_drawCurrentMemoryCell();
 int mc_drawConsole();
 #endif // MY_CONSOLE_H
