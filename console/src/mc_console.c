@@ -124,7 +124,7 @@ int mc_drawKeys() {
     printf("F6 - instruction counter");
 }
 
-int mc_drawCurrectMemoryCell() {
+int mc_drawCurrentMemoryCell() {
     mc_drawWindow(&mc_currentMemoryCellWindow);
     int16_t value = mc_memory[mc_currentCell];
     mc_memoryGet(mc_currentCell, &value);
@@ -134,7 +134,7 @@ int mc_drawCurrectMemoryCell() {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < MC_CHARMAP_SIZE; j++) {
             if (string[i] == charMap[j].ch) {
-                mc_printBigChar(charMap[j].bigChar.value, startx + i*9, starty, MC_WHITE, MC_BLACK);
+                mc_printBigCharNoColor(charMap[j].bigChar.value, startx + i*9, starty);
                 break;
             }
 
@@ -150,7 +150,7 @@ int mc_drawConsole() {
     mc_drawWindow(&mc_instructionCounterWindow);
     mc_drawWindow(&mc_operationWindow);
     mc_drawWindow(&mc_flagsWindow);
-    mc_drawCurrectMemoryCell();
+    mc_drawCurrentMemoryCell();
     mc_drawKeys();
     return 0;
 }
