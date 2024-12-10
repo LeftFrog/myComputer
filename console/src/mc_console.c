@@ -43,7 +43,7 @@ int loadChars() {
 char* mc_getFormattedMemoryValue(int16_t value) {
     char* string = malloc(6);
     if (value < 0) {
-        sprintf(string, "-%04X", value);
+        sprintf(string, "-%04X", (value & 0x7FFF));
     } else {
         sprintf(string, "+%04X", value);
     }
@@ -80,11 +80,7 @@ int mc_drawMemory() {
         for (int j = 0; j < 10; j++) {
             mc_goto(mc_memoryWidnow.x + 1 + j*6 , mc_memoryWidnow.y + 1 + i);
             int16_t value = mc_memory[i*10 + j];
-            if (value < 0) {
-                printf("-%04X", value);
-            } else {
-                printf("+%04X", value);
-            }
+            printf(mc_getFormattedMemoryValue(value));
         }
     }
     return 0;
@@ -94,11 +90,7 @@ int mc_drawAccumulator() {
     mc_drawWindow(&mc_accumulatorWindow);
     int startx = mc_accumulatorWindow.x + mc_accumulatorWindow.width / 2 - 3;
     mc_goto(startx , mc_accumulatorWindow.y + 1);
-    if (mc_accumulator < 0) {
-        printf("-%04X", mc_accumulator);
-    } else {
-        printf("+%04X", mc_accumulator);
-    }
+    printf(mc_getFormattedMemoryValue(mc_accumulator));
     return 0;
 }
 
