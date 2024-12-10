@@ -13,14 +13,15 @@ extern struct mc_window mc_accumulatorWindow;
 extern struct mc_window mc_instructionCounterWindow;
 extern struct mc_window mc_operationWindow;
 extern struct mc_window mc_flagsWindow;
-extern struct mc_window mc_currentMemoryItemWindow;
+extern struct mc_window mc_currentMemoryCellWindow;
 extern struct mc_window mc_keysWindow;
 
 extern uint8_t currentCell;
 
-int initConsole();
+int mc_initConsole();
 int mc_drawMemory();
 int mc_drawAccumulator();
 int mc_drawKeys();
+int mc_drawCurrectMemoryCell();
 int mc_drawConsole();
 #endif // MY_CONSOLE_H

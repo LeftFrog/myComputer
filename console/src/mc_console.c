@@ -13,7 +13,7 @@ struct mc_window mc_accumulatorWindow = { 62, 0, 20, 3, "Accumulator" };
 struct mc_window mc_instructionCounterWindow = { 62, 3, 20, 3, "InstructionCounter" };
 struct mc_window mc_operationWindow = { 62, 6, 20,  3, "Operation" };
 struct mc_window mc_flagsWindow = { 62, 9, 20, 3, "Flags" };
-struct mc_window mc_currentMemoryItemWindow = { 0, 12, 46, 10, ""};
+struct mc_window mc_currentMemoryCellWindow = { 0, 12, 46, 10, ""};
 struct mc_window mc_keysWindow = { 46, 12, 35, 10, "" };
 
 struct mc_bigChar chars[18];
@@ -35,7 +35,7 @@ int loadChars() {
     return 0;
 }
 
-int initConsole() {
+int mc_initConsole() {
     mc_clrscr();
     loadChars();
     charMap[0] = (CharMap){ '+', chars[0] };
@@ -110,13 +110,17 @@ int mc_drawKeys() {
     printf("F6 - instruction counter");
 }
 
+int mc_drawCurrectMemoryCell() {
+    mc_drawWindow(&mc_currentMemoryCellWindow);
+}
+
 int mc_drawConsole() {
     mc_drawMemory();
     mc_drawAccumulator();
     mc_drawWindow(&mc_instructionCounterWindow);
     mc_drawWindow(&mc_operationWindow);
     mc_drawWindow(&mc_flagsWindow);
-    mc_drawWindow(&mc_currentMemoryItemWindow);
+    mc_drawCurrectMemoryCell();
     mc_drawKeys();
     return 0;
 }
