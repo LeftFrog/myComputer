@@ -6,6 +6,7 @@
 #define MY_CONSOLE_H
 
 #include "../../terminal/include/mc_window.h"
+#include <stdint.h>
 
 extern struct mc_window mc_memoryWidnow;
 extern struct mc_window mc_accumulatorWindow;
@@ -14,6 +15,8 @@ extern struct mc_window mc_operationWindow;
 extern struct mc_window mc_flagsWindow;
 extern struct mc_window mc_currentMemoryItemWindow;
 extern struct mc_window mc_keysWindow;
+
+extern uint8_t currentCell;
 
 int initConsole();
 int mc_drawMemory();

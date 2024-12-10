@@ -19,8 +19,8 @@ struct mc_window mc_keysWindow = { 46, 12, 35, 10, "" };
 struct mc_bigChar chars[18];
 
 typedef struct {
-    const char ch;
-    const struct mc_bigChar;
+    char ch;
+    struct mc_bigChar bigChar;
 } CharMap;
 
 CharMap charMap[18];
@@ -38,24 +38,24 @@ int loadChars() {
 int initConsole() {
     mc_clrscr();
     loadChars();
-    charMap[0] = (CharMap){ '+', chars[0].value };
-    charMap[1] = (CharMap){ '-', chars[1].value };
-    charMap[2] = (CharMap){ '0', chars[2].value };
-    charMap[3] = (CharMap){ '1', chars[3].value };
-    charMap[4] = (CharMap){ '2', chars[4].value };
-    charMap[5] = (CharMap){ '3', chars[5].value };
-    charMap[6] = (CharMap){ '4', chars[6].value };
-    charMap[7] = (CharMap){ '5', chars[7].value };
-    charMap[8] = (CharMap){ '6', chars[8].value };
-    charMap[9] = (CharMap){ '7', chars[9].value };
-    charMap[10] = (CharMap){ '8', chars[10].value };
-    charMap[11] = (CharMap){ '9', chars[11].value };
-    charMap[12] = (CharMap){ 'A', chars[12].value };
-    charMap[13] = (CharMap){ 'B', chars[13].value };
-    charMap[14] = (CharMap){ 'C', chars[14].value };
-    charMap[15] = (CharMap){ 'D', chars[15].value };
-    charMap[16] = (CharMap){ 'E', chars[16].value };
-    charMap[17] = (CharMap){ 'F', chars[17].value };
+    charMap[0] = (CharMap){ '+', chars[0] };
+    charMap[1] = (CharMap){ '-', chars[1] };
+    charMap[2] = (CharMap){ '0', chars[2] };
+    charMap[3] = (CharMap){ '1', chars[3] };
+    charMap[4] = (CharMap){ '2', chars[4] };
+    charMap[5] = (CharMap){ '3', chars[5] };
+    charMap[6] = (CharMap){ '4', chars[6] };
+    charMap[7] = (CharMap){ '5', chars[7] };
+    charMap[8] = (CharMap){ '6', chars[8] };
+    charMap[9] = (CharMap){ '7', chars[9] };
+    charMap[10] = (CharMap){ '8', chars[10] };
+    charMap[11] = (CharMap){ '9', chars[11] };
+    charMap[12] = (CharMap){ 'A', chars[12] };
+    charMap[13] = (CharMap){ 'B', chars[13] };
+    charMap[14] = (CharMap){ 'C', chars[14] };
+    charMap[15] = (CharMap){ 'D', chars[15] };
+    charMap[16] = (CharMap){ 'E', chars[16] };
+    charMap[17] = (CharMap){ 'F', chars[17] };
     mc_drawConsole();
     return 0;
 }
@@ -67,7 +67,7 @@ int mc_drawMemory() {
             mc_goto(mc_memoryWidnow.x + 1 + j*6 , mc_memoryWidnow.y + 1 + i);
             int16_t value = mc_memory[i*10 + j];
             if (value < 0) {
-                printf("-%04X", -value);
+                printf("-%04X", value);
             } else {
                 printf("+%04X", value);
             }
@@ -81,7 +81,7 @@ int mc_drawAccumulator() {
     int startx = mc_accumulatorWindow.x + mc_accumulatorWindow.width / 2 - 3;
     mc_goto(startx , mc_accumulatorWindow.y + 1);
     if (mc_accumulator < 0) {
-        printf("-%04X", -mc_accumulator);
+        printf("-%04X", mc_accumulator);
     } else {
         printf("+%04X", mc_accumulator);
     }
