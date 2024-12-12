@@ -136,6 +136,9 @@ int mc_drawCurrentMemoryCell() {
     return 0;
 }
 
+int mc_drawFlags() {
+}
+
 int mc_drawConsole() {
     mc_drawMemory();
     mc_drawAccumulator();
