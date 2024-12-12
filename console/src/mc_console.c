@@ -71,6 +71,7 @@ int mc_initConsole() {
     charMap[15] = (CharMap){ 'D', chars[15] };
     charMap[16] = (CharMap){ 'E', chars[16] };
     charMap[17] = (CharMap){ 'F', chars[17] };
+    mc_registerSet(MC_STACK_OVERFLOW_FLAG, 1);
     return 0;
 }
 
@@ -137,6 +138,56 @@ int mc_drawCurrentMemoryCell() {
 }
 
 int mc_drawFlags() {
+    mc_drawWindow(&mc_flagsWindow);
+    int x = mc_flagsWindow.x + 6;
+    mc_goto(x, mc_flagsWindow.y + 1);
+    uint8_t value;
+
+    mc_registerGet(MC_STACK_OVERFLOW_FLAG, &value);
+    if (value) {
+        mc_setBackgroundColor(MC_COLOR_144);
+    }
+    printf("S");
+    mc_resetColors();
+
+
+    x += 2;
+    mc_goto(x, mc_flagsWindow.y + 1);
+    mc_registerGet(MC_DIVISION_BY_ZERO_FLAG, &value);
+    if (value) {
+        mc_setBackgroundColor(MC_COLOR_144);
+    }
+    printf("D");
+    mc_resetColors();
+
+    x += 2;
+    mc_goto(x, mc_flagsWindow.y + 1);
+    mc_registerGet(MC_MEMORY_OUT_OF_BOUNDS_FLAG, &value);
+    if (value) {
+        mc_setBackgroundColor(MC_COLOR_144);
+    }
+    printf("M");
+    mc_resetColors();
+
+    x += 2;
+    mc_goto(x, mc_flagsWindow.y + 1);
+    mc_registerGet(MC_CLOCK_PULSE_IGNORED_FLAG, &value);
+    if (value) {
+        mc_setBackgroundColor(MC_COLOR_144);
+    }
+    printf("C");
+    mc_resetColors();
+
+    x += 2;
+    mc_goto(x, mc_flagsWindow.y + 1);
+    mc_registerGet(MC_INVALID_INSTRUCTION_FLAG, &value);
+    if (value) {
+        mc_setBackgroundColor(MC_COLOR_144);
+    }
+    printf("I");
+    mc_resetColors();
+
+    return 0;
 }
 
 int mc_drawConsole() {
@@ -144,7 +195,7 @@ int mc_drawConsole() {
     mc_drawAccumulator();
     mc_drawWindow(&mc_instructionCounterWindow);
     mc_drawWindow(&mc_operationWindow);
-    mc_drawWindow(&mc_flagsWindow);
+    mc_drawFlags();
     mc_drawCurrentMemoryCell();
     mc_drawKeys();
     return 0;
