@@ -40,14 +40,12 @@ int loadChars() {
     return 0;
 }
 
-char* mc_getFormattedMemoryValue(int16_t value) {
-    char* string = malloc(6);
+void mc_getFormattedMemoryValue(int16_t value, char* buffer) {
     if (value < 0) {
-        sprintf(string, "-%04X", (value & 0x7FFF));
+        sprintf(buffer, "-%04X", (value & 0x7FFF));
     } else {
-        sprintf(string, "+%04X", value);
+        sprintf(buffer, "+%04X", value);
     }
-    return string;
 }
 
 int mc_initConsole() {
@@ -77,11 +75,13 @@ int mc_initConsole() {
 
 int mc_drawMemory() {
     mc_drawWindow(&mc_memoryWidnow);
+    char buffer[6];
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             mc_goto(mc_memoryWidnow.x + 1 + j*6 , mc_memoryWidnow.y + 1 + i);
             int16_t value = mc_memory[i*10 + j];
-            printf(mc_getFormattedMemoryValue(value));
+            mc_getFormattedMemoryValue(value, buffer);
+            printf("%s", buffer);
         }
     }
     return 0;
@@ -89,9 +89,11 @@ int mc_drawMemory() {
 
 int mc_drawAccumulator() {
     mc_drawWindow(&mc_accumulatorWindow);
+    char buffer[6];
     int startx = mc_accumulatorWindow.x + mc_accumulatorWindow.width / 2 - 3;
     mc_goto(startx , mc_accumulatorWindow.y + 1);
-    printf(mc_getFormattedMemoryValue(mc_accumulator));
+    mc_getFormattedMemoryValue(mc_accumulator, buffer);
+    printf("%s", buffer);
     return 0;
 }
 
@@ -121,7 +123,8 @@ int mc_drawCurrentMemoryCell() {
     mc_drawWindow(&mc_currentMemoryCellWindow);
     int16_t value = mc_memory[mc_currentCell];
     mc_memoryGet(mc_currentCell, &value);
-    char* string = mc_getFormattedMemoryValue(value);
+    char string[6];
+    mc_getFormattedMemoryValue(value, string);
     int startx = mc_currentMemoryCellWindow.x + 1;
     int starty = mc_currentMemoryCellWindow.y + 1;
     for (int i = 0; i < 5; i++) {
@@ -133,7 +136,6 @@ int mc_drawCurrentMemoryCell() {
 
         }
     }
-    free(string);
     return 0;
 }
 

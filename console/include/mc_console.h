@@ -18,7 +18,7 @@ extern struct mc_window mc_keysWindow;
 
 extern uint8_t mc_currentCell;
 
-char* mc_getFormattedMemoryValue(int16_t value);
+void mc_getFormattedMemoryValue(int16_t value, char* buffer);
 
 int mc_initConsole();
 int mc_drawMemory();
