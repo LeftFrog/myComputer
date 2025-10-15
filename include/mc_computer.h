@@ -4,10 +4,10 @@
 
 #define MC_MEMORY_SIZE 100
 
-int16_t mc_memory[MC_MEMORY_SIZE];
+extern int16_t mc_memory[MC_MEMORY_SIZE];
 
-int16_t mc_accumulator; // 16-bit register
-uint8_t mc_register;   // 8-bit register
+extern int16_t mc_accumulator; // 16-bit register
+extern uint8_t mc_register;   // 8-bit register
 
 // Register flags
 #define MC_STACK_OVERFLOW_FLAG 0b00000001
