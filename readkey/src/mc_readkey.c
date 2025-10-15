@@ -79,6 +79,7 @@ int mc_mytermrestore() {
     if (tcsetattr(STDIN_FILENO, TCSANOW, &oldt) != 0) {
         return -1;
     }
+    return 0;
 }
 
 int mc_mytermregime(int regime, int vtime, int vmin, int echo, int sigint) {
