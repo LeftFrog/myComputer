@@ -159,4 +159,5 @@ int mc_bigCharsRead(int fd, struct mc_bigChar* chars, int need_count, int* count
         }
         // *count = i;
     }
+    return 0;
 }
