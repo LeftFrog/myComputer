@@ -39,13 +39,13 @@ static KeyMap keyMap[] = {
 
 int mc_readkey(enum mc_keys* key) {
     char buf[8] = {0};
-    ssize_t bytesRead = read(STDIN_FILENO, buf, sizeof(buf));
+    ssize_t bytesRead = read(STDIN_FILENO, buf, sizeof(buf) - 1);
 
     if (bytesRead <= 0) {
         return -1;
     }
 
-    buf[bytesRead] ='\0';
+    buf[bytesRead] = '\0';
 
     for (size_t i = 0; i < sizeof(keyMap) / sizeof(keyMap[0]); ++i) {
         if (strcmp(buf, keyMap[i].seq) == 0) {

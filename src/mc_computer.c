@@ -5,6 +5,11 @@
 
 #define MAX_INSTRUCTION 127
 
+// Global variable definitions
+int16_t mc_memory[MC_MEMORY_SIZE];
+int16_t mc_accumulator;
+uint8_t mc_register;
+
 bool instructionLookup[MAX_INSTRUCTION + 1] = { false };
 
 void initInstructionLookup() {

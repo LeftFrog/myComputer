@@ -66,6 +66,7 @@ int mc_printBigCharNoColor(int arr[2], int x, int y) {
         }
         printf("\n"); // Move to the next row
     }
+    return 0;
 }
 
 int mc_setBigCharPos(int *big, int x, int y, int value) {
@@ -106,11 +107,11 @@ int mc_bigCharWrite(int fd, int* big, int count) {
 
     for (int i = 0; i < count*2; ++i) {
         if (fwrite(&big[i], sizeof(int), 1, file) != 1) {
-            fdclose(file);
+            fclose(file);
             return -1;
         }
     }
-    fdclose(file);
+    fclose(file);
     return 0;
 }
 
@@ -122,11 +123,11 @@ int mc_bigCharsWrite(int fd, struct mc_bigChar* chars, int count) {
 
     for (int i = 0; i < count; ++i) {
         if (fwrite(chars[i].value, sizeof(int), 2, file) != 2) {
-            fdclose(file);
+            fclose(file);
             return -1;
         }
     }
-    fdclose(file);
+    fclose(file);
     return 0;
 }
 
@@ -138,11 +139,14 @@ int mc_bigCharRead(int fd, int* big, int need_count, int* count) {
 
     for (int i = 0; i < need_count*2; ++i) {
         if (fread(&big[i], sizeof(int), 1, file) != 1) {
-            fdclose(file);
+            fclose(file);
             return -1;
         }
-        *count = i/2;
+        if (count != NULL) {
+            *count = i/2 + 1;
+        }
     }
+    fclose(file);
     return 0;
 }
 
@@ -154,10 +158,13 @@ int mc_bigCharsRead(int fd, struct mc_bigChar* chars, int need_count, int* count
 
     for (int i = 0; i < need_count; ++i) {
         if (fread(chars[i].value, sizeof(int), 2, file) != 2) {
-            fdclose(file);
+            fclose(file);
             return -1;
         }
-        // *count = i;
+        if (count != NULL) {
+            *count = i + 1;
+        }
     }
+    fclose(file);
     return 0;
 }

@@ -117,6 +117,7 @@ int mc_drawKeys() {
     printf("F5 - accumulator");
     mc_goto(mc_keysWindow.x + 1, mc_keysWindow.y + 7);
     printf("F6 - instruction counter");
+    return 0;
 }
 
 int mc_drawCurrentMemoryCell() {
